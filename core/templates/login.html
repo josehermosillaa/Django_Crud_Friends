@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block titulo %}LOGIN USUARIO{% endblock %}
+
+{% block contenido %}
+<div class="row">
+  <div class="col-6 pt-3 pb-5">
+      <div class="row pb-4">
+          <h2>Registration</h2>
+      </div>
+      <form id="register_form" name="register_form" action="#" method="POST">
+          {% csrf_token %}
+          <div class="row mb-3">
+              <div class="col-3">
+                  <label for="first_name" class="form-label">First Name</label>
+              </div>
+              <div class="col-9">
+                  <input type="text" class="form-control" id="first_name" name="first_name" value="{{ request.session.form_data.first_name }}">
+              </div>
+          </div>                        
+          <div class="row mb-3">
+              <div class="col-3">
+                  <label for="last_name" class="form-label">Last Name</label>
+              </div>
+              <div class="col-9">
+                  <input type="text" class="form-control" id="last_name" name="last_name" value="{{ request.session.form_data.last_name }}">
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-3">
+                  <label for="email" class="form-label">Email</label>
+              </div>
+              <div class="col-9">
+                  <input type="text" class="form-control" id="email" name="email" value="{{ request.session.form_data.email }}">
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-3">
+                  <label for="birthday" class="form-label">Birthday</label>
+              </div>
+              <div class="col-9">
+                  <input type="date" class="form-control" id="birthday" name="birthday" value="{{ request.session.form_data.birthday }}">
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-3">
+                  <label for="password" class="form-label">Password</label>
+              </div>
+              <div class="col-9">
+                  <input type="password" class="form-control" id="password" name="password" value="">
+              </div>
+          </div>
+          <div class="row mb-3">
+              <div class="col-3">
+                  <label for="password2" class="form-label">Confirm Password</label>
+              </div>
+              <div class="col-9">
+                  <input type="password" class="form-control" id="password2" name="password2" value="">
+              </div>
+          </div>
+          <div class="row mt-4 text-center">
+              <div class="col-4 offset-4">
+                  <button type="submit" class="btn btn-dark">Register</button>
+              </div>
+          </div>
+      </form>
+  </div>
+  <div class="col-6 pt-3 pb-5">
+      <div class="row pb-4">
+          <h2>Login</h2>
+      </div>
+      <form id="login_form" name="login_form" action="#" method="POST">
+          {% csrf_token %}
+          <div class="row mb-3">
+              <div class="col-3">
+                  <label for="email_login" class="form-label">Email</label>
+              </div>
+              <div class="col-9">
+                  <input type="text" class="form-control" id="email_login" name="email_login" value="{{ request.session.form_data.email_login }}">
+              </div>
+          </div>                        
+          <div class="row mb-3">
+              <div class="col-3">
+                  <label for="password_login" class="form-label">Password</label>
+              </div>
+              <div class="col-9">
+                  <input type="password" class="form-control" id="password_login" name="password_login" value="">
+              </div>
+          </div>
+          <div class="row mt-4 text-center">
+              <div class="col-4 offset-4">
+                  <button type="submit" class="btn btn-dark">Login</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>
+<!-- <div class="container mt-3">
+  <div class="row">
+    <div class="col-5">
+      <h1>LOGIN DESDE BASE</h1>
+
+      <form method="POST">
+        {% csrf_token %}
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="email" name="email" value="{{request.session.login_email}}">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+      </form>
+    </div>
+  </div>
+  <div>
+    <a href="/registro">Registrarse</a>
+  </div>
+</div> -->
+{% endblock %}
+
+{% block libreria %}
+
+
+{% endblock %}
