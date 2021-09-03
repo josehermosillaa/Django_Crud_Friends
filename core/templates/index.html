@@ -5,9 +5,9 @@
 
 {% block proyecto %} Hello, {{request.session.usuario.alias}}! {% endblock %}
 {% block contenido %}
-<h2>Here is the list of your friends:</h2>
-<div class="container">
-
+<div class="container"></div>
+    {% if friends%}
+    <h2>Here is the list of your friends:</h2>
     <div class="row">
         <div class="col col-md-8">
             <table class="table table-bordered table-striped col-md-6">
@@ -16,47 +16,46 @@
                     <th>Action</th>
                     
                 </tr>
-                {% for shows in all_shows %}
+                {% for friend in friends %}
                 <tr>
-                    <td>{{shows.id}}</td>
-                    
-                    
+                    <td>{{friend}}</td>
+
                     <div id="tablelinks">
-                        <td><a href="/shows/{{shows.id}}">View Profile</a>|  <a
-                                href="/{{shows.id}}/edit">Remove as Friend</a></td>
+                        <td><a href="/user/{{friend}}">View Profile</a>|  <a
+                                href="/removefriend/{{friend}}">Remove as Friend</a></td>
                     </div>
                 </tr>
                 {% endfor %}
             </table>
+        {% else %}
+            <h3>You don't have friends yet.</h3>
+        {% endif%}
         </div>
     </div>
-    <h2>Other Users not on your friend's list:</h2>
-<div class="container">
-    <div class="row">
-        <h1> </h1>
-    </div>
-    <div class="row">
+    {% if nonfriends %}
+        <h2>Other Users not on your friend's list:</h2>
+        <div class="container">
+
+        <div class="row">
         <div class="col col-md-6">
             <table class="table table-bordered table-striped ">
                 <tr>
                     <th>Alias</th>
                     <th>Action</th>
-                    
                 </tr>
-                {% for shows in all_shows %}
+                {% for user in nonfriends %}
                 <tr>
-                    <td>{{shows.id}}</td>
-                    
-                    
+                    <td><a href="/user/{{user.id}}">{{user.alias}}</a></td>
                     <div id="tablelinks">
-                        <td><a href="/shows/{{shows.id}}">add as Friend</a></td>
+                        <td><a href="/addfriend/{{user.id}}" class="btn">Add as Friend</a></td>
                     </div>
                 </tr>
                 {% endfor %}
             </table>
+        {%endif%}
     </div>
-    </div>
-  
+</div>
+
 
 
 <!-- <h1>Bienvenid@: {{request.session.usuario.name}}</h1> -->

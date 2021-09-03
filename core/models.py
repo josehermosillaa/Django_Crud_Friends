@@ -73,7 +73,6 @@ class User(models.Model):
     email = models.EmailField(max_length=255, unique=True)
     birthday = models.DateField(default=datetime.now)
     password = models.CharField(max_length=70)
-    friend = models.ManyToManyField('User',related_name = 'friends')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
@@ -83,3 +82,9 @@ class User(models.Model):
 
     def __repr__(self):
         return f"{self.name}"
+
+class Friend(models.Model):
+    user_friend = models.ForeignKey(User, related_name='requester',on_delete=models.CASCADE)
+    second_friend = models.ForeignKey(User, related_name='accepter',on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
