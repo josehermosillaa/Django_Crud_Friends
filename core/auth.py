@@ -23,8 +23,8 @@ def login(request):
                 user = {
                     "id" : log_user.id,
                     "name": f"{log_user}",
+                    "alias":log_user.alias,
                     "email": log_user.email,
-                    "role": log_user.role
                 }
 
                 request.session['usuario'] = user
@@ -63,9 +63,9 @@ def registro(request):
 
             usuario_nuevo = User.objects.create(
                 name = request.POST['name'],
+                alias = request.POST['alias'],
                 email=request.POST['email'],
                 password=password_encryp,
-                role=request.POST['role']
             )
 
             messages.success(request, "El usuario fue agregado con exito.")

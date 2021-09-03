@@ -11,15 +11,15 @@ class UserManager(models.Manager):
         errors = {}
 
         # Revisando el primer nombre
-        if len(postData['first_name']) == 0:
+        if len(postData['name']) == 0:
             errors['first_name_emp'] = "No se permite Nombre vacio"
-        elif len(postData['first_name']) > 0 and len(postData['first_name']) < 2:
+        elif len(postData['name']) > 0 and len(postData['first_name']) < 2:
             errors['show_title_len'] = "Su Nombre debe contener almenos dos caracteres"
             
         # checking last name
-        if len(postData['last_name']) == 0:
+        if len(postData['alias']) == 0:
             errors['last_name_emp'] = "No se permite el apellido Vacio"
-        elif len(postData['last_name']) > 0 and len(postData['last_name']) < 2:
+        elif len(postData['alias']) > 0 and len(postData['last_name']) < 2:
             errors['last_name_len'] = "Su apellido debe contener al menos dos caracteres"
 
         if not EMAIL_REGEX.match(postData['email']):
@@ -60,7 +60,7 @@ class UserManager(models.Manager):
 
 class User(models.Model):
 
-    first_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     alias = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, unique=True)
     birthday = models.DateField(default=datetime.now)
