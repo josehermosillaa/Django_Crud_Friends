@@ -8,11 +8,11 @@
         <div class="row pb-4">
             <h2>Registration</h2>
         </div>
-        <form id="register_form" name="register_form" method="POST">
+        <form id="register_form" name="register_form" method="POST" action = "/registro/">
             {% csrf_token %}
             <div class="row mb-3">
                 <div class="col-3">
-                    <label for="first_name" class="form-label">First Name</label>
+                    <label for="first_name" class="form-label">Name</label>
                 </div>
                 <div class="col-9">
                     <input type="text" class="form-control" id="name" name="name"
@@ -73,7 +73,7 @@
         <div class="row pb-4">
             <h2>Login</h2>
         </div>
-        <form id="login_form" name="login_form" method="POST">
+        <form id="login_form" name="login_form" method="POST" action="/login/">
             {% csrf_token %}
             <div class="row mb-3">
                 <div class="col-3">

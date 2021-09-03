@@ -3,13 +3,64 @@
 {% block titulo %}Friends{% endblock %}
 
 
-{% block proyecto %}Welcome {{request.session.user.alias}} {% endblock %}
+{% block proyecto %} Hello, {{request.session.usuario.alias}}! {% endblock %}
 {% block contenido %}
+<h2>Here is the list of your friends:</h2>
+<div class="container">
 
+    <div class="row">
+        <div class="col col-md-8">
+            <table class="table table-bordered table-striped col-md-6">
+                <tr>
+                    <th>Alias</th>
+                    <th>Action</th>
+                    
+                </tr>
+                {% for shows in all_shows %}
+                <tr>
+                    <td>{{shows.id}}</td>
+                    
+                    
+                    <div id="tablelinks">
+                        <td><a href="/shows/{{shows.id}}">View Profile</a>|  <a
+                                href="/{{shows.id}}/edit">Remove as Friend</a></td>
+                    </div>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <h2>Other Users not on your friend's list:</h2>
+<div class="container">
+    <div class="row">
+        <h1> </h1>
+    </div>
+    <div class="row">
+        <div class="col col-md-6">
+            <table class="table table-bordered table-striped ">
+                <tr>
+                    <th>Alias</th>
+                    <th>Action</th>
+                    
+                </tr>
+                {% for shows in all_shows %}
+                <tr>
+                    <td>{{shows.id}}</td>
+                    
+                    
+                    <div id="tablelinks">
+                        <td><a href="/shows/{{shows.id}}">add as Friend</a></td>
+                    </div>
+                </tr>
+                {% endfor %}
+            </table>
+    </div>
+    </div>
+  
 
 
 <!-- <h1>Bienvenid@: {{request.session.usuario.name}}</h1> -->
-<a href="/logout">SALIR DEL SISTEMA</a>
+<!-- <a href="/logout">SALIR DEL SISTEMA</a> -->
 
 {% endblock %}
 

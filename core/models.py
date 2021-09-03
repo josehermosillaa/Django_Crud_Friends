@@ -1,32 +1,40 @@
 from django.db import models
 import re
 from datetime import datetime, timedelta
-
+from calendar import isleap
 # Create your models here.
 class UserManager(models.Manager):
     def validador_basico(self, postData):
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         SOLO_LETRAS = re.compile(r'^[a-zA-Z. ]+$')
-
+        
+        lista =[]
+        # for c in User.objects.all():
+        #     lista.append(c.email)
+        #     print(c.email)
+            
         errors = {}
-
+        # if postData['email'] in lista:
+        #     errors['email-unico'] = "el email ya existe"
+        if User.objects.filter(email = postData['email']).exists():
+            errors['email-unico'] = "el email ya existe"
         # Revisando el primer nombre
         if len(postData['name']) == 0:
             errors['first_name_emp'] = "No se permite Nombre vacio"
-        elif len(postData['name']) > 0 and len(postData['first_name']) < 2:
+        elif len(postData['name']) > 0 and len(postData['name']) < 2:
             errors['show_title_len'] = "Su Nombre debe contener almenos dos caracteres"
             
-        # checking last name
+        # checking alias
         if len(postData['alias']) == 0:
             errors['last_name_emp'] = "No se permite el apellido Vacio"
-        elif len(postData['alias']) > 0 and len(postData['last_name']) < 2:
+        elif len(postData['alias']) > 0 and len(postData['alias']) < 2:
             errors['last_name_len'] = "Su apellido debe contener al menos dos caracteres"
 
         if not EMAIL_REGEX.match(postData['email']):
             errors['email'] = "correo invalido"
 
         if not SOLO_LETRAS.match(postData['name']):
-            errors['solo_letras'] = "solo letras en nombreporfavor"
+            errors['solo_letras'] = "solo letras en nombre por favor"
 
         if len(postData['birthday']) == 0:
             errors['birthday_emp'] = "Birthday can not be empty"      
@@ -45,13 +53,13 @@ class UserManager(models.Manager):
             difference_in_years = diffyears + (difference.days + difference.seconds/86400.0)/days_in_year              
             
             # If user is less than 16 years old
-            if difference_in_years < 13:
+            if difference_in_years < 16:
                 errors['birthday_old'] = "La edad debe ser al menos 16 años para registrarse"   
 
         if len(postData['password']) < 4:
             errors['password'] = "contraseña debe tener al menos 8 caracteres";
 
-        if postData['password'] != postData['password_confirm'] :
+        if postData['password'] != postData['password2'] :
             errors['password_confirm'] = "contraseña y confirmar contraseña no son iguales. "
 
         
@@ -65,11 +73,11 @@ class User(models.Model):
     email = models.EmailField(max_length=255, unique=True)
     birthday = models.DateField(default=datetime.now)
     password = models.CharField(max_length=70)
-    friend = models.ManyToManyField('User',related_name = 'users')
+    friend = models.ManyToManyField('User',related_name = 'friends')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
-
+    #users = lista de usuarios amigos, inversa
     def __str__(self):
         return f"{self.name}"
 

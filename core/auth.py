@@ -14,11 +14,11 @@ def logout(request):
 def login(request):
     if request.method == "POST":
         print(request.POST)
-        user = User.objects.filter(email=request.POST['email'])
+        user = User.objects.filter(email=request.POST['email_login'])
         if user:
             log_user = user[0]
 
-            if bcrypt.checkpw(request.POST['password'].encode(), log_user.password.encode()):
+            if bcrypt.checkpw(request.POST['password_login'].encode(), log_user.password.encode()):
 
                 user = {
                     "id" : log_user.id,
@@ -74,8 +74,9 @@ def registro(request):
             user = {
                 "id" : usuario_nuevo.id,
                 "name": f"{usuario_nuevo}",
+                "alias":usuario_nuevo.alias,
                 "email": usuario_nuevo.email,
-                "role": usuario_nuevo.role
+                
             }
 
             request.session['usuario'] = user
@@ -83,4 +84,4 @@ def registro(request):
 
         return redirect("/registro")
     else:
-        return render(request, 'registro.html')
+        return render(request, 'login.html')
