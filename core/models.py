@@ -61,7 +61,7 @@ class UserManager(models.Manager):
 class User(models.Model):
 
     first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    alias = models.CharField(max_length=255)
     email = models.EmailField(max_length=255, unique=True)
     birthday = models.DateField(default=datetime.now)
     password = models.CharField(max_length=70)
