@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
-{% block titulo %}INDEX USUARIO{% endblock %}
+{% block titulo %}Friends{% endblock %}
 
+
+{% block proyecto %}Welcome {{request.session.usuario.name}} {% endblock %}
 {% block contenido %}
-<h1>Hello, {{request.session.usuario.name}} !</h1>
+
 
 
 <!-- <h1>Bienvenid@: {{request.session.usuario.name}}</h1> -->
