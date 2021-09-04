@@ -14,15 +14,13 @@
                 <tr>
                     <th>Alias</th>
                     <th>Action</th>
-                    
                 </tr>
                 {% for friend in friends %}
                 <tr>
-                    <td>{{friend}}</td>
-
-                    <div id="tablelinks">
-                        <td><a href="/user/{{friend}}">View Profile</a>|  <a
-                                href="/removefriend/{{friend}}">Remove as Friend</a></td>
+                    <td>{{friend.alias}}</td>
+                    <div >
+                        <td><a href="/user/{{friend.id}}">View Profile</a>|  <a
+                                href="/removefriend/{{friend.id}}">Remove as Friend</a></td>
                     </div>
                 </tr>
                 {% endfor %}

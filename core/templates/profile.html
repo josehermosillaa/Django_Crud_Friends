@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block titulo %}Friends{% endblock %}
+{% block boton %}
+    <span class="me-5"><a class="btn btn-outline-success " href="/">Home</a></span>
+{% endblock %}
+
+{% block proyecto %} {{user.alias}}'s Profile {% endblock %}
+{% block contenido %}
+<div class="container"></div>
+    <div class="row mt-5">
+        <h3> Name {{user.name}}</h3>
+        <h3>Email Address {{user.email}}</h3>
+    </div>
+</div>
+
+
+
+<!-- <h1>Bienvenid@: {{request.session.usuario.name}}</h1> -->
+<!-- <a href="/logout">SALIR DEL SISTEMA</a> -->
+
+{% endblock %}
+
+{% block libreria %}
+{% endblock %}

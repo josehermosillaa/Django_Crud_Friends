@@ -40,6 +40,7 @@
       </ul> -->
         {% if request.session.usuario %}
         <div class="d-flex">
+          {% block boton %}{% endblock %}
           <a class="btn btn-outline-success" href="/logout">Logout</a>
         </div>
         {% endif %}

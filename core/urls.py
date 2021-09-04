@@ -6,7 +6,8 @@ urlpatterns = [
     path('login/', auth.login),
     path('logout/', auth.logout),
     path('addfriend/<int:id>', views.addFriend),
-    path('removefriend/<int:id>',views.removeFriend)
+    path('removefriend/<int:id>',views.removeFriend),
+    path('user/<int:id>',views.profile),
     
     # path()
 ]
