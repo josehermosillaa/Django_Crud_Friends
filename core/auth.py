@@ -13,7 +13,7 @@ def logout(request):
 
 def login(request):
     if request.method == "POST":
-        print(request.POST)
+        # print(request.POST)
         user = User.objects.filter(email=request.POST['email_login'])
         if user:
             log_user = user[0]

@@ -13,7 +13,7 @@ def index(request):
     user = User.objects.get(id=request.session['usuario']['id'])
     # friends = Friend.objects.all().exclude(user_friend=user)
     friends = user.accepter.all()  
-    print(friends)
+    # print(friends)
     for x in friends:
         friendslist.append(x)
         # print(friendslist)
